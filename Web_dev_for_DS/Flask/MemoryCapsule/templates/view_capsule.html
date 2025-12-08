@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ cap.title }} — Memory Capsule{% endblock %}
+
+{% block content %}
+  <article class="view">
+    <header>
+      <h2>{{ cap.title }}</h2>
+      <div class="meta">
+        {% if cap.owner %}From: {{ cap.owner }} · {% endif %}
+        Created: {{ cap.created_at.strftime('%Y-%m-%d %H:%M IST') }}
+      </div>
+    </header>
+
+    {% if cap.is_unlocked() %}
+      <section class="open-body">
+        {% if cap.image_name %}
+          <img class="full" src="{{ url_for('capsule_image', cid=cap.id) }}" alt="attachment">
+        {% endif %}
+        <div class="body-text">{{ cap.body }}</div>
+        <div class="controls">
+          {% if not cap.opened_at %}
+            <form action="{{ url_for('open_capsule', cid=cap.id) }}" method="post" style="display:inline">
+              <button class="btn" type="submit">Open capsule</button>
+            </form>
+          {% else %}
+            <small class="hint">Opened: {{ cap.opened_at.strftime('%Y-%m-%d %H:%M UTC') }}</small>
+          {% endif %}
+          <a class="btn muted" href="{{ url_for('index') }}">Back</a>
+        </div>
+      </section>
+    {% else %}
+      <section class="locked">
+        <div class="padlock">🔒</div>
+        <p class="lead">This capsule is sealed.</p>
+        <p>It will open on <strong>{{ cap.unlock_at.strftime('%Y-%m-%d %H:%M IST') }}</strong>.</p>
+        <p class="muted">Time until reveal is shown in UTC. Your browser may show local time elsewhere.</p>
+        <a class="btn" href="{{ url_for('index') }}">Back to list</a>
+      </section>
+    {% endif %}
+  </article>
+{% endblock %}

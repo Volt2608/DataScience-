@@ -1,0 +1,17 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const flashes = document.getElementById("flashes");
+  if (!flashes) return;
+
+  flashes.addEventListener("click", function (e) {
+    if (e.target.classList.contains("flash-close")) {
+      const item = e.target.closest(".flash");
+      if (item) item.remove();
+    }
+  });
+
+  // fade out automatically after 5s
+  setTimeout(function () {
+    const items = flashes.querySelectorAll(".flash");
+    items.forEach(function (it) { it.remove(); });
+  }, 5000);
+});

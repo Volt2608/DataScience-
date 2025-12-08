@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Create Capsule — Memory Capsule{% endblock %}
+
+{% block content %}
+  <h2>Write a capsule</h2>
+  <form action="{{ url_for('new_capsule') }}" method="post" enctype="multipart/form-data" class="form">
+    <label>
+      What do you call it?
+      <input name="title" type="text" value="{{ form.title if form else '' }}" maxlength="160" required>
+    </label>
+
+    <label>
+      Write your message to future-you
+      <textarea name="body" rows="6" required>{{ form.body if form else '' }}</textarea>
+      <small class="hint">Short confessions, advice, or a stupid joke — you choose.</small>
+    </label>
+
+    <label>
+      Reveal date &amp; time
+      <!-- datetime-local produces a value like 2025-11-23T18:30 -->
+      <input name="unlock_at" type="datetime-local" value="{{ form.unlock_at if form else '' }}" required>
+      <small class="hint">Pick when this should open. Use your local time — we store in UTC.</small>
+    </label>
+
+    <label>
+      Your name (optional)
+      <input name="owner" type="text" value="{{ form.owner if form else '' }}" maxlength="120">
+    </label>
+
+    <label>
+      Send to (email) when opened (optional)
+      <input name="recipient" type="email" value="{{ form.recipient if form else '' }}">
+      <small class="hint">If filled, you can later wire up email delivery. For now it's stored in the capsule.</small>
+    </label>
+
+    <label>
+      Optional image (PNG/JPG/GIF, &lt;2MB)
+      <input name="image" type="file" accept="image/png, image/jpeg, image/gif">
+    </label>
+
+    <div class="form-actions">
+      <button class="btn" type="submit">Tuck capsule away</button>
+      <a class="btn muted" href="{{ url_for('index') }}">Cancel</a>
+    </div>
+  </form>
+{% endblock %}

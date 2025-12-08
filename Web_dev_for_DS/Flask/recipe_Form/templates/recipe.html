@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form handling in Flask</title>
+</head>
+<body>
+  <h1>Create a Recipe</h1>
+  <form action="/recipe" method="POST">
+    <label>Recipe Name:</label>
+    <input type="text" name="name" placeholder="Enter Recipe Name">
+
+    <label>Main Ingredient:</label>
+    <input type="text" name="ingredient" placeholder="Enter Ingredient">
+
+    <label>Cooking Time (minutes):</label>
+    <input type="number" name="time" placeholder="Enter time">
+
+    <button type="submit">Create Recipe</button>
+  </form>
+</body>
+</html>
+

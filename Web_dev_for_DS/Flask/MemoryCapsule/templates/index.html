@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Your Capsules — Memory Capsule{% endblock %}
+
+{% block content %}
+  <h2>Your capsules</h2>
+
+  {% if not capsules %}
+    <p class="muted">No capsules yet. Try writing a quick note to future-you — it feels weirdly good.</p>
+    <p><a class="btn" href="{{ url_for('new_capsule') }}">Create first capsule</a></p>
+  {% else %}
+    <div class="grid">
+      {% for c in capsules %}
+        <article class="card {% if c.is_unlocked() %}open{% else %}sealed{% endif %}">
+          <div class="card-head">
+            <strong class="title">{{ c.title }}</strong>
+            <small class="meta">
+              {% if c.owner %}by {{ c.owner }} · {% endif %}
+              {{ c.created_at.strftime('%Y-%m-%d') }}
+            </small>
+          </div>
+
+          <div class="card-body">
+            {% if c.image_name %}
+              <img class="thumb" src="{{ url_for('capsule_image', cid=c.id) }}" alt="attachment">
+            {% endif %}
+            <p class="preview">{{ c.body[:140] }}{% if c.body|length > 140 %}…{% endif %}</p>
+          </div>
+
+          <div class="card-foot">
+            <span class="status">{{ c.status() }}</span>
+            <span class="when">
+              {% if c.is_unlocked() %}
+                Opens: now
+              {% else %}
+                Opens: {{ c.unlock_at.strftime('%Y-%m-%d %H:%M IST') }}
+              {% endif %}
+            </span>
+            <div class="actions">
+              <a class="link" href="{{ url_for('view_capsule', cid=c.id) }}">View</a>
+              <form action="{{ url_for('delete_capsule', cid=c.id) }}" method="post" onsubmit="return confirm('Delete this capsule?');" style="display:inline">
+                <button class="link danger" type="submit">Delete</button>
+              </form>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

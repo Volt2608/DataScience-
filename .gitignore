@@ -1,0 +1,99 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Pip / build / distributions
+build/
+dist/
+*.egg-info/
+*.egg
+*.whl
+pip-wheel-metadata/
+wheelhouse/
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+.jupyter/
+*.nbconvert.ipynb
+
+# Notebook outputs (optional)
+output/
+notebooks/.ipynb_checkpoints/
+
+# Data files (ignore large/untracked datasets)
+data/
+datasets/
+raw_data/
+processed_data/
+*.tsv
+*.parquet
+*.h5
+*.hdf5
+
+# Logs and runtime files
+*.log
+logs/
+tmp/
+temp/
+*.pid
+*.seed
+
+# Testing, coverage, caches
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# MyPy, Cython, etc.
+.mypy_cache/
+.cyproject/
+.cython_cache/
+
+# SQLite / DB files
+*.sqlite3
+*.db
+*.db-journal
+
+# Secrets and env files
+.env
+.env.*
+secrets.json
+credentials.json
+*.pem
+*.key
+
+# Misc
+Thumbs.db
+*.bak
+*.swp
+*~
+
+# OS-specific or editor-specific extras
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

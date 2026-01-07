@@ -1,0 +1,33 @@
+Interview-ready explanation (clean & confident)
+
+“Retrieval-Augmented Generation is a technique where we combine search with generation.
+Before the LLM answers, we retrieve the most relevant pieces of information from an external
+knowledge base using embeddings, then condition the LLM on that context so the answer is accurate,
+grounded, and up-to-date.”
+
+-------------------------------------------------------------------------
+What is RAG :
+
+RAG = letting an LLM look up the right notes before it answers.
+Simple explanation (non-technical)
+
+A normal LLM answers from memory.
+RAG answers after reading your documents.
+
+-------------------------------------------------------------------------
+
+What is Embedding :
+
+Embeddings turn text into numbers so a computer can compare meaning, not keywords.
+Now the why, specifically for your RAG project
+
+
+An embedding is a vector (list of numbers) that represents the semantic meaning of text.
+Similar meaning → vectors are close
+Different meaning → vectors are far apart
+-------------------------------------------------------------------------
+
+LLM = speaks
+Whisper = hears
+Embeddings = understands similarity
+Vector DB = memory
